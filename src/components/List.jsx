@@ -3,6 +3,16 @@ import { ReactComponent as CheckCircle } from "../media/icons/CheckCircle.svg"
 import { ReactComponent as MinusCircle } from "../media/icons/MinusCircle.svg"
 
 const List = ({tasks, setTasks}) => {
+  //console.log("list tasks", tasks)
+  const deleteTask = (id) => {
+    console.log("id", id)
+
+    const taskDelete = tasks 
+    const updateTask = taskDelete.filter((task) => task.id !== id)
+
+    setTasks(updateTask)
+  }
+
   return (
         <ul>
           {tasks.map((task) => (
@@ -12,7 +22,7 @@ const List = ({tasks, setTasks}) => {
                   <CheckCircle className={styles.task__info__check}/>
                   <p> {task['name']} </p>
                 </div>
-                <MinusCircle className={styles.task__info__remove}/>
+                <MinusCircle className={styles.task__info__remove} onClick={(e) => deleteTask(task['id'])}/>
               </li>
            </div>
           ))}

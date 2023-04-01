@@ -69,7 +69,7 @@ const Todo = () => {
                     }
                 </div>
                 {tasks.length ? 
-                    <List tasks={tasks}/>
+                    <List tasks={tasks} setTasks={setTasks}/>
                     : <div className={styles.todo_bottom}>
                         <p>Nothing to-do yet.</p>
                     </div>
