@@ -1,0 +1,11 @@
+@use "../mixin.scss" as mixin;
+
+button {
+  padding: 1rem 1.8rem;
+  color: mixin.$sky-50;
+  background-color: mixin.$sky-800;
+  box-shadow: mixin.$shadow-base;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,58 @@
+@use "./mixin.scss" as mixin;
+// @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap");
+
+*,
+*:before,
+*:after,
+body {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Inter", sans-serif;
+  color: mixin.$stone-800;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+li,
+button,
+label,
+input,
+a,
+p {
+  font-size: mixin.$regular-3;
+}
+
+h1 {
+  font-size: mixin.$big-1;
+}
+
+h2 {
+  font-size: mixin.$big-2;
+}
+
+h3 {
+  font-size: mixin.$big-3;
+}
+
+h4,
+h5 {
+  font-size: mixin.$big-4;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,5 +1,79 @@
-@use "../../mixin.scss" as mixin;
+@use "../mixin.scss" as mixin;
 
-.todo {
-  color: pink;
+.todo_wrapper {
+  background-color: mixin.$stone-50;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+}
+
+.todo_container {
+  //background-color: lavender;
+  width: 60%;
+  margin: 8rem auto;
+  @include mixin.mobile {
+    width: 80%;
+  }
+  @include mixin.tablet {
+    width: 80%;
+  }
+  .todo_up {
+    // @include mixin.flex(space-between, center, row);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    h3 {
+      //font-weight: 700;
+      //background-color: lavender;
+    }
+    &__options {
+      @include mixin.flex(flex-end, center, row);
+      //background-color: lightpink;
+      gap: 2rem;
+      p {
+        color: mixin.$rose-700;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .todo_addNewTask {
+    form {
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      margin-top: 3rem;
+      input {
+        background-color: mixin.$stone-50;
+        border: none;
+        padding: 0rem 1rem;
+        font-weight: 400;
+        &::placeholder {
+          color: mixin.$stone-300;
+        }
+      }
+    }
+    .todo_addNewTask__options {
+      @include mixin.flex(flex-end, center, row);
+      gap: 2rem;
+      p {
+        color: mixin.$sky-700;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .todo_bottom {
+    height: 17vh;
+    margin-top: 2rem;
+    background-color: white;
+    box-shadow: mixin.$shadow-base;
+    border-radius: 8px;
+    @include mixin.flex(center, center, row);
+    p {
+      background-color: white;
+      color: mixin.$stone-700;
+      font-weight: 500;
+    }
+  }
 }

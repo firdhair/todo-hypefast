@@ -1,0 +1,27 @@
+@use "../mixin.scss" as mixin;
+
+.task {
+  background-color: white;
+  box-shadow: mixin.$shadow-base;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.6rem 2rem;
+  border: none;
+  border-radius: 8px;
+  &__info {
+    @include mixin.flex(space-between, center, row);
+    &__checklist {
+      @include mixin.flex(flex-start, center, row);
+      gap: 2rem;
+      p {
+        font-weight: 500;
+      }
+    }
+    &__check {
+      cursor: pointer;
+    }
+    &__remove {
+      cursor: pointer;
+    }
+  }
+}
