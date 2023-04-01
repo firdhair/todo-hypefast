@@ -29,7 +29,7 @@ $shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
 ////////////////////////////////// Sizing //////////////////////////////////
 $big-1: calc(2rem + 1vw);
 $big-2: calc(1.5rem + 1vw);
-$big-3: calc(1rem + 1vw);
+$big-3: calc(1.2rem + 1vw);
 $big-4: calc(2.4rem + 1vw);
 $big-5: calc(2rem + 1vw);
 
@@ -41,7 +41,7 @@ $medium-4: calc(1.3rem + 1vw);
 $regular-1: calc(0.45rem + 1vw);
 $regular-2: calc(0.4rem + 1vw);
 $regular-3: calc(0.2rem + 1vw);
-$regular-4: calc(0.15rem + 1vw);
+$regular-4: calc(0.1rem + 1vw);
 
 @mixin flex($justify, $align, $direction) {
   display: flex;

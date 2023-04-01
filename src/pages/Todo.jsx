@@ -8,15 +8,23 @@ import List from "../components/List"
 import Button from "../components/Button"
 
 const Todo = () => {
-    const [isAddNew, setIsAddNew] = useState(false)
     const [task, setTask] = useState("")
     const [tasks, setTasks] = useState([])
+    const [isAddNew, setIsAddNew] = useState(false)
+    const [isMoreThan100, setIsMoreThan100] = useState(false)
+    //const [isLessThan0, setIsLessThan0] = useState(false)
 
     const onSubmitTask = (e) => {
         e.preventDefault()
-        setTasks([...tasks, task]) 
-        setTask("")
-        setIsAddNew(false)
+        console.log("length task", task['name'].length)
+        if(task['name'].length > 100){
+            setIsMoreThan100(true)
+        } else {  
+            setTasks([...tasks, task]) 
+            setTask("")
+            setIsAddNew(false)
+            setIsMoreThan100(false)
+        }
     }
 
     const handleChange = (e) => {
@@ -25,8 +33,9 @@ const Todo = () => {
             name: e.target.value,
             status: false
         });
-    };
+    }
 
+    console.log("isMoreThan100", isMoreThan100)
     return(
         <div className={styles.todo_wrapper}>  
             <div className={styles.todo_container}>
@@ -42,13 +51,20 @@ const Todo = () => {
                 </div>
                 <div className={styles.todo_addNewTask}>
                     {isAddNew ? 
+                    // isMoreThan100
+                    <>
                     <form onSubmit={onSubmitTask}>
-                        <input type="text" className='' onChange={(e) => handleChange(e)} placeholder="Add new to-do title..."/>
+                        <textarea type="text" className='' onChange={(e) => handleChange(e)} placeholder="Add new to-do title..." rows="2"/>
                         <div className={styles.todo_addNewTask__options}>
                             <p onClick={() => setIsAddNew(!isAddNew)}>Cancel</p>
                             <button type='submit'>Create</button>
                         </div> 
                     </form>
+                    {isMoreThan100 === true ? 
+                    <p className={styles.warning}>Title must be shorter than equal to 100 characters.</p> :
+                    <></>
+                    }
+                    </>
                     : <></>
                     }
                 </div>

@@ -2,7 +2,7 @@ import styles from "./List.module.scss"
 import { ReactComponent as CheckCircle } from "../media/icons/CheckCircle.svg"
 import { ReactComponent as MinusCircle } from "../media/icons/MinusCircle.svg"
 
-const List = ({tasks}) => {
+const List = ({tasks, setTasks}) => {
   return (
         <ul>
           {tasks.map((task) => (

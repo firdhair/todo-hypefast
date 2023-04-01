@@ -9,7 +9,7 @@
 
 .todo_container {
   //background-color: lavender;
-  width: 60%;
+  width: 55%;
   margin: 8rem auto;
   @include mixin.mobile {
     width: 80%;
@@ -20,11 +20,7 @@
   .todo_up {
     // @include mixin.flex(space-between, center, row);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    h3 {
-      //font-weight: 700;
-      //background-color: lavender;
-    }
+    grid-template-columns: 3fr 1fr;
     &__options {
       @include mixin.flex(flex-end, center, row);
       //background-color: lightpink;
@@ -42,11 +38,20 @@
       display: grid;
       grid-template-columns: 4fr 1fr;
       margin-top: 3rem;
-      input {
+      textarea {
         background-color: mixin.$stone-50;
         border: none;
-        padding: 0rem 1rem;
+        padding: 2rem 1rem 1rem 1rem;
         font-weight: 400;
+        word-wrap: break-word;
+        display: block;
+        /* or */
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        resize: none;
+        font-size: mixin.$regular-3;
+        color: mixin.$stone-800;
+        line-height: 16px;
         &::placeholder {
           color: mixin.$stone-300;
         }
@@ -60,6 +65,15 @@
         font-weight: 600;
         cursor: pointer;
       }
+    }
+    .warning {
+      color: mixin.$rose-600;
+      font-weight: 500;
+      font-size: mixin.$regular-4;
+      padding: 0rem 1rem;
+      margin-bottom: 4rem;
+      letter-spacing: -0.5px;
+      line-height: 16px;
     }
   }
 
