@@ -20,7 +20,13 @@
   .todo_up {
     // @include mixin.flex(space-between, center, row);
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    @include mixin.mobile {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mixin.tablet {
+      grid-template-columns: 1fr 1fr;
+    }
     &__options {
       @include mixin.flex(flex-end, center, row);
       //background-color: lightpink;
@@ -34,10 +40,19 @@
   }
 
   .todo_addNewTask {
+    transition: opacity 2.5s ease-in-out;
     form {
       display: grid;
       grid-template-columns: 3fr 1fr;
       margin-top: 3rem;
+      //background-color: lavender;
+      transition: opacity 2.5s ease-in-out;
+      @include mixin.mobile {
+        grid-template-columns: 2fr 1fr;
+      }
+      @include mixin.tablet {
+        grid-template-columns: 2fr 1fr;
+      }
       textarea {
         background-color: mixin.$stone-50;
         border: none;
@@ -55,6 +70,12 @@
         &::placeholder {
           color: mixin.$stone-300;
         }
+        @include mixin.mobile {
+          font-size: mixin.$regular-1;
+        }
+        @include mixin.tablet {
+          font-size: mixin.$regular-1;
+        }
       }
     }
     .todo_addNewTask__options {
@@ -71,6 +92,7 @@
       font-weight: 500;
       font-size: mixin.$regular-4;
       padding: 0rem 1rem;
+      margin-top: 0.5rem;
       margin-bottom: 4rem;
       letter-spacing: -0.5px;
       line-height: 16px;
@@ -127,6 +149,12 @@ button {
       @include mixin.flex(center, center, column);
       font-weight: 600;
       font-size: mixin.$regular-4;
+      @include mixin.mobile {
+        font-size: mixin.$regular-1;
+      }
+      @include mixin.tablet {
+        font-size: mixin.$regular-1;
+      }
     }
     @include mixin.tablet {
       min-width: 20%;
@@ -165,6 +193,12 @@ button {
       font-size: mixin.$regular-4;
       letter-spacing: 0.5px;
       line-height: 20px;
+      @include mixin.mobile {
+        font-size: mixin.$regular-1;
+      }
+      @include mixin.tablet {
+        font-size: mixin.$regular-1;
+      }
     }
 
     .cancel {
@@ -181,6 +215,7 @@ button {
       gap: 10px;
     }
   }
+
   &__empty {
     background-color: white;
     min-height: 24vh;
@@ -194,12 +229,24 @@ button {
       @include mixin.flex(center, center, column);
       font-weight: 600;
       font-size: mixin.$regular-4;
+      @include mixin.mobile {
+        font-size: mixin.$regular-1;
+      }
+      @include mixin.tablet {
+        font-size: mixin.$regular-1;
+      }
     }
     button {
       font-weight: 600;
       font-size: mixin.$regular-4;
       color: mixin.$stone-700;
       background-color: mixin.$stone-100;
+      @include mixin.mobile {
+        font-size: mixin.$regular-1;
+      }
+      @include mixin.tablet {
+        font-size: mixin.$regular-1;
+      }
     }
   }
 }

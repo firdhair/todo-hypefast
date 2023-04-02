@@ -30,6 +30,12 @@ input,
 a,
 p {
   font-size: mixin.$regular-3;
+  @include mixin.mobile {
+    font-size: mixin.$regular-1;
+  }
+  @include mixin.tablet {
+    font-size: mixin.$regular-1;
+  }
 }
 
 h1 {
