@@ -36,7 +36,7 @@
   .todo_addNewTask {
     form {
       display: grid;
-      grid-template-columns: 4fr 1fr;
+      grid-template-columns: 3fr 1fr;
       margin-top: 3rem;
       textarea {
         background-color: mixin.$stone-50;
@@ -88,6 +88,118 @@
       background-color: white;
       color: mixin.$stone-700;
       font-weight: 500;
+    }
+  }
+}
+
+button {
+  padding: 1rem 1.8rem;
+  color: mixin.$sky-50;
+  background-color: mixin.$sky-800;
+  box-shadow: mixin.$shadow-base;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  @include mixin.flex(center, center, column);
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+
+  &__content {
+    background-color: white;
+    min-height: 24vh;
+    width: 30rem;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: mixin.$shadow-md;
+    display: grid;
+    grid-template-rows: 1.5fr 1fr;
+    p {
+      @include mixin.flex(center, center, column);
+      font-weight: 600;
+      font-size: mixin.$regular-4;
+    }
+    @include mixin.tablet {
+      min-width: 20%;
+      max-width: 75%;
+      min-height: 35vh;
+      overflow: auto;
+    }
+
+    @include mixin.mobile {
+      max-width: 70%;
+      min-height: 30vh;
+    }
+
+    @include mixin.desktop {
+      width: 21vw;
+    }
+
+    &__confirmation {
+      background-color: mixin.$stone-50;
+      //padding-top: 1rem;
+      //background-color: lavender;
+      @include mixin.flex(space-evenly, center, row);
+      //border-radius: 0px 12px;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      // display: grid;
+      // grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .cancel,
+    .confirm {
+      width: 50%;
+      margin: 1rem 1rem 1rem 0rem;
+      gap: 10px;
+      font-weight: 600;
+      font-size: mixin.$regular-4;
+      letter-spacing: 0.5px;
+      line-height: 20px;
+    }
+
+    .cancel {
+      //width: 40%;
+      background-color: mixin.$stone-50;
+      color: mixin.$stone-700;
+      box-shadow: none;
+    }
+    .confirm {
+      //width: 60%;
+      box-shadow: mixin.$shadow-base;
+      background-color: mixin.$rose-800;
+      border-radius: 8px;
+      gap: 10px;
+    }
+  }
+  &__empty {
+    background-color: white;
+    min-height: 24vh;
+    width: 30rem;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: mixin.$shadow-md;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    p {
+      @include mixin.flex(center, center, column);
+      font-weight: 600;
+      font-size: mixin.$regular-4;
+    }
+    button {
+      font-weight: 600;
+      font-size: mixin.$regular-4;
+      color: mixin.$stone-700;
+      background-color: mixin.$stone-100;
     }
   }
 }

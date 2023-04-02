@@ -1,4 +1,5 @@
 import Todo from "./pages/Todo";
+import './global.scss';
 
 function App() {
   return (

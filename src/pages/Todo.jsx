@@ -2,11 +2,11 @@
 import { useState } from 'react'; 
 import uniqid from "uniqid"
 import Modal from 'react-modal';
+import Popup from 'reactjs-popup';
 // import styling //
 import styles from "./Todo.module.scss"
 // import necessary components //
 import List from "../components/List"
-import Button from "../components/Button"
 
 const Todo = () => {
     const [task, setTask] = useState("")
@@ -14,6 +14,7 @@ const Todo = () => {
     const [isAddNew, setIsAddNew] = useState(false)
     const [isMoreThan100, setIsMoreThan100] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
+    const [open, setOpen] = useState(false);
     //const [isLessThan0, setIsLessThan0] = useState(false)
 
     const onSubmitTask = (e) => {
@@ -39,15 +40,16 @@ const Todo = () => {
 
     const removeAllTasks = () => {
         setTasks([])
+        setIsOpen(false)
     }
 
-    // const openModal = () => {
-    //     setIsOpen(true)
-    // }
+    const openModal = () => {
+        setIsOpen(true)
+    }
 
-    // const closeModal = () => {
-    //     setIsOpen(false)
-    // }
+    const closeModal = () => {
+        setIsOpen(false)
+    }
 
     return(
         <div className={styles.todo_wrapper}>  
@@ -56,21 +58,50 @@ const Todo = () => {
                     <h3>Things you should be doing today...</h3>
                     <div className={styles.todo_up__options}>
                         {!isAddNew ? 
-                            // <Button addNew={isAddNew} setIsAddNew={setIsAddNew} name={"Add New"}/>: 
                             <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>:
                         <></> }
-                        <p onClick={() => removeAllTasks()}>Clear</p>
+                        {/* <p onClick={() => setIsOpen(true)}>Clear</p> */}
+                        <p onClick={() => setIsOpen(!isOpen)}>Clear</p>
                     </div>
                 </div>
-                {/* <Modal
-                    isOpen={isOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Example Modal"
-                >
-                    <h2>Modal Title</h2>
-                    <p>Modal content goes here.</p>
-                    <button onClick={closeModal}>Close Modal</button>
+                {isOpen && (
+                    <>
+                    {tasks.length ? 
+                        <div className={styles.modal}>
+                            <div className={styles.modal__content}>
+                                <p>Confirm to clear all todos?</p>
+                                <div className={styles.modal__content__confirmation}>
+                                    <button className={styles.cancel} onClick={() => setIsOpen(false)}>Cancel</button>
+                                    <button className={styles.confirm} onClick={() => removeAllTasks()}>Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                        : 
+                        <div className={styles.modal}>
+                            <div className={styles.modal__empty}>
+                                <p>There is no todo item!</p>
+                                <button className={styles.cancel} onClick={() => setIsOpen(false)}>Close</button>
+                            </div>
+                        </div>
+                    }
+                    </>
+                )}
+                {/* <Modal isOpen={isOpen} onRequestClose={closeModal} className={styles.modal}>
+                    {tasks.length ? 
+                    <div className={styles.modal__content}>
+                        <p>Confirm to clear all todos?</p>
+                        <div className={styles.modal__content__confirmation}>
+                            <button className={styles.cancel} onClick={() => setIsOpen(false)}>Cancel</button>
+                            <button className={styles.confirm} onClick={() => removeAllTasks()}>Confirm</button>
+                        </div>
+                    </div> : 
+                    <div className={styles.modal__empty}>
+                        <p>There is no todo item!</p>
+                        <button className={styles.cancel} onClick={() => setIsOpen(false)}>Close</button>
+                    </div>
+                    }
                 </Modal> */}
+                
                 <div className={styles.todo_addNewTask}>
                     {isAddNew ? 
                     <>
