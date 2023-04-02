@@ -18,9 +18,11 @@ const Todo = () => {
         e.preventDefault()
         if(task.length <= 0 || task['name'].length <= 0){
             setIsLessThan0(true)
+            setIsMoreThan100(false)
         }
         else if(task['name'].length >= 100){
             setIsMoreThan100(true)
+            setIsLessThan0(false)
         } 
         else {  
             setTasks([...tasks, task]) 
