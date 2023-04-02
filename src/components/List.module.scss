@@ -19,9 +19,17 @@
     }
     &__check {
       cursor: pointer;
+      //fill: mixin.$stone-100;
+      //fill: yellow;
     }
     &__remove {
       cursor: pointer;
+      //stroke: blue;
+      //stroke-width: 2px;
     }
   }
 }
+
+// svg {
+//   color: pink;
+// }
