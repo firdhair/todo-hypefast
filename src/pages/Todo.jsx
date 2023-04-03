@@ -59,14 +59,34 @@ const Todo = () => {
                 <div className={styles.todo_up}>
                     <h3>Things you should be doing today...</h3>
                     <div className={styles.todo_up__options}>
-                        {!isAddNew ? 
-                            <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>:
-                        <></> }
+                        {!isAddNew && ( 
+                            <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>) 
+                        }
                         {/* <p onClick={() => setIsOpen(true)}>Clear</p> */}
                         <p onClick={() => setIsOpen(!isOpen)}>Clear</p>
                     </div>
                 </div>
-
+                
+                <div className={styles.todo_addNewTask}>
+                    {isAddNew && ( 
+                    <>
+                        <form onSubmit={onSubmitNewTask}>
+                            <textarea type="text" className='' onChange={(e) => addNewTask(e)} placeholder="Add new to-do title..." rows="2"/>
+                            <div className={styles.todo_addNewTask__options}>
+                                <p onClick={() => cancelNewTask()}>Cancel</p>
+                                <button type='submit'>Create</button>
+                            </div> 
+                        </form>
+                        {isMoreThan100 && !isLessThan0 &&( 
+                            <p className={styles.warning}>Title must be shorter than equal to 100 characters.</p>
+                        )}
+                        {isLessThan0 && !isMoreThan100 &&( 
+                            <p className={styles.warning}>Title must be longer than 0 character.</p>)
+                        }
+                    </>)
+                    }
+                </div>
+                
                 {/* code for modal */}
                 {isOpen && (
                     <>
@@ -90,27 +110,7 @@ const Todo = () => {
                     }
                     </>
                 )}
-                
-                <div className={styles.todo_addNewTask}>
-                    {isAddNew ? 
-                    <>
-                        <form onSubmit={onSubmitNewTask} className={`text ${isAddNew ? 'visible' : ''}`}>
-                            <textarea type="text" className='' onChange={(e) => addNewTask(e)} placeholder="Add new to-do title..." rows="2"/>
-                            <div className={styles.todo_addNewTask__options}>
-                                <p onClick={() => cancelNewTask()}>Cancel</p>
-                                <button type='submit'>Create</button>
-                            </div> 
-                        </form>
-                        {isMoreThan100 === true ? 
-                            <p className={styles.warning}>Title must be shorter than equal to 100 characters.</p> : <></>
-                        }
-                        {isLessThan0 === true ? 
-                            <p className={styles.warning}>Title must be longer than 0 character.</p> : <></>
-                        }
-                    </>
-                    : <></>
-                    }
-                </div>
+
                 {tasks.length ? 
                     <List tasks={tasks} setTasks={setTasks}/>
                     : <div className={styles.todo_bottom}>

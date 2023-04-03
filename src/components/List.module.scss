@@ -9,16 +9,24 @@
   border: none;
   border-radius: 8px;
   &__info {
-    @include mixin.flex(space-between, center, row);
+    //@include mixin.flex(space-between, center, row);
+    display: grid;
+    grid-template-columns: 9fr 1fr;
     &__checklist {
-      @include mixin.flex(flex-start, center, row);
+      display: grid;
+      grid-template-columns: 0fr 1fr;
+      //background-color: lavender;
+
       gap: 2rem;
+      //background-color: lavender;
       p {
         font-weight: 500;
       }
     }
     &__check {
       cursor: pointer;
+      justify-self: center; /* Center horizontally */
+      align-self: center; /* Center vertically */
       //fill: mixin.$stone-100;
       //fill: yellow;
       @include mixin.mobile {
@@ -30,8 +38,13 @@
         height: 1.5rem;
       }
     }
+    &__removelist {
+      @include mixin.flex(flex-end, center, row);
+      //gap: 1rem;
+    }
     &__remove {
       cursor: pointer;
+      //background-color: lightblue;
       @include mixin.mobile {
         width: 1.2rem;
         height: 1.2rem;
