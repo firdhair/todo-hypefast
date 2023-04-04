@@ -97,8 +97,8 @@ const Todo = () => {
                     <h3>Things you should be doing today...</h3>
                     <div className={styles.todo_up__options}>
                         {!isAddNew && ( 
-                            <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>) 
-                        }
+                            <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>
+                        )}
                         <p onClick={() => setIsOpen(!isOpen)}>Clear</p>
                     </div>
                 </div>
@@ -121,7 +121,6 @@ const Todo = () => {
                         }
                     </>)}
                 </div>
-                
                 {isOpen && (
                     <Modal tasks={tasks} removeAllTasks={removeAllTasks} closeModal={closeModal} />
                 )}

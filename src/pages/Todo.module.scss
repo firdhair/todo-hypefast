@@ -9,8 +9,8 @@
 
 .todo_container {
   //background-color: lavender;
-  width: 55%;
-  margin: 8rem auto;
+  width: 55.5%;
+  margin: 7rem auto;
   @include mixin.mobile {
     width: 80%;
   }
@@ -45,6 +45,7 @@
         cursor: pointer;
       }
       button {
+        //height: 100%;
         @include mixin.tablet {
           padding: 0.4rem 1.8rem;
           margin-left: 1rem;
@@ -108,7 +109,6 @@
         @include mixin.tablet {
           padding: 1rem 1.8rem;
           border-radius: 1rem;
-          display: block;
         }
       }
       @include mixin.mobile {
@@ -144,29 +144,18 @@
 }
 
 button {
-  padding: 1rem 1.8rem;
   color: mixin.$sky-50;
   background-color: mixin.$sky-800;
-  box-shadow: mixin.$shadow-base;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-
-  //display: inline-block;
-  //padding: 0.35em 1.2em;
-  //margin: 0 0.3em 0.3em 0;
-  box-sizing: border-box;
-  text-decoration: none;
+  padding: 1rem 1.8rem;
+  box-shadow: mixin.$shadow-base;
   text-align: center;
   transition: all 0.2s;
+  cursor: pointer;
 
   @include mixin.tablet {
-    //padding: 0.4rem 1.8rem;
     border-radius: 1rem;
     display: block;
-    //margin: 0.4em auto;
-  }
-  @include mixin.desktop {
-    //padding: 0.8em 1.8em;
   }
 }
