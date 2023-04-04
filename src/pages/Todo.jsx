@@ -1,5 +1,5 @@
 // import necessary dependencies //
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import uniqid from "uniqid"
 // import styling //
 import styles from "./Todo.module.scss"
@@ -8,15 +8,26 @@ import List from "../components/List"
 
 const Todo = () => {
     const [task, setTask] = useState("")
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem("tasks")
+        if (savedTasks) {
+            return JSON.parse(savedTasks)
+        } else {
+            return []
+        }
+    })
     const [isAddNew, setIsAddNew] = useState(false)
     const [isMoreThan100, setIsMoreThan100] = useState(false)
     const [isLessThan0, setIsLessThan0] = useState(false)
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
+
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }, [tasks])
 
     const onSubmitNewTask = (e) => {
         e.preventDefault()
-        if(task.length <= 0 || task['name'].length <= 0){
+        if (task.length <= 0 || task['name'].length <= 0){
             setIsLessThan0(true)
             setIsMoreThan100(false)
         }
@@ -77,10 +88,10 @@ const Todo = () => {
                                 <button type='submit'>Create</button>
                             </div> 
                         </form>
-                        {isMoreThan100 && !isLessThan0 &&( 
+                        {isMoreThan100 && !isLessThan0 && ( 
                             <p className={styles.warning}>Title must be shorter than equal to 100 characters.</p>
                         )}
-                        {isLessThan0 && !isMoreThan100 &&( 
+                        {isLessThan0 && !isMoreThan100 && ( 
                             <p className={styles.warning}>Title must be longer than 0 character.</p>)
                         }
                     </>)

@@ -312,30 +312,3 @@ button {
     }
   }
 }
-
-.show {
-  transform: translateX(100px);
-  transition: transform 0.5s ease-in-out;
-}
-
-// .box {
-//   color: pink;
-// }
-// .text {
-//   opacity: 0;
-//   transition: opacity 0.5s ease-in-out;
-// }
-
-// .visible {
-//   opacity: 1;
-// }
-
-.testtt {
-  background-color: lavender;
-  opacity: 0.5;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.visible {
-  opacity: 1;
-}
