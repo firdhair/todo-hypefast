@@ -25,8 +25,8 @@
     }
     &__check {
       cursor: pointer;
-      justify-self: center; /* Center horizontally */
-      align-self: center; /* Center vertically */
+      justify-self: center;
+      align-self: center;
       //fill: mixin.$stone-100;
       //fill: yellow;
       @include mixin.mobile {
@@ -54,5 +54,19 @@
         height: 1.5rem;
       }
     }
+  }
+}
+
+.todo_bottom {
+  height: 17vh;
+  margin-top: 2rem;
+  background-color: white;
+  box-shadow: mixin.$shadow-base;
+  border-radius: 8px;
+  @include mixin.flex(center, center, row);
+  p {
+    background-color: white;
+    color: mixin.$stone-700;
+    font-weight: 500;
   }
 }

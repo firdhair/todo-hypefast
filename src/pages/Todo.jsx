@@ -5,6 +5,7 @@ import uniqid from "uniqid"
 import styles from "./Todo.module.scss"
 // import necessary components //
 import List from "../components/List"
+import Modal from "../components/Modal"
 
 const Todo = () => {
     const [task, setTask] = useState("")
@@ -25,9 +26,17 @@ const Todo = () => {
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }, [tasks])
 
-    const onSubmitNewTask = (e) => {
+    const setNewTask = (e) => {
+        setTask({
+            id: uniqid(),
+            name: e.target.value,
+            status: false
+        });
+    }
+
+    const submitNewTask = (e) => {
         e.preventDefault()
-        if (task.length <= 0 || task['name'].length <= 0){
+        if (task.length <= 0 || task['name'].length <= 0) {
             setIsLessThan0(true)
             setIsMoreThan100(false)
         }
@@ -44,14 +53,6 @@ const Todo = () => {
         }
     }
 
-    const addNewTask = (e) => {
-        setTask({
-            id: uniqid(),
-            name: e.target.value,
-            status: false
-        });
-    }
-
     const cancelNewTask = (e) => {
         setIsAddNew(false)
         setIsMoreThan100(false)
@@ -59,8 +60,33 @@ const Todo = () => {
         setTask("")
     }
 
+    const finishTask = (id) => {
+        tasks.map((task, i) => {
+            if(task['id'] === id) {
+                const newTask = [...tasks]
+                newTask[i] = {
+                    id: id,
+                    name: newTask[i]['name'],
+                    status: true
+                }
+                setTasks(newTask)
+            }
+        })
+    }
+
+    const deleteTask = (id) => {
+        const taskDelete = tasks 
+        const updateTask = taskDelete.filter((task) => task.id !== id)
+
+        setTasks(updateTask)
+    }
+
     const removeAllTasks = () => {
         setTasks([])
+        setIsOpen(false)
+    }
+
+    const closeModal = () => {
         setIsOpen(false)
     }
 
@@ -73,7 +99,6 @@ const Todo = () => {
                         {!isAddNew && ( 
                             <button onClick={() => setIsAddNew(!isAddNew)}>Add New</button>) 
                         }
-                        {/* <p onClick={() => setIsOpen(true)}>Clear</p> */}
                         <p onClick={() => setIsOpen(!isOpen)}>Clear</p>
                     </div>
                 </div>
@@ -81,8 +106,8 @@ const Todo = () => {
                 <div className={styles.todo_addNewTask}>
                     {isAddNew && ( 
                     <>
-                        <form onSubmit={onSubmitNewTask}>
-                            <textarea type="text" className='' onChange={(e) => addNewTask(e)} placeholder="Add new to-do title..." rows="2"/>
+                        <form onSubmit={submitNewTask}>
+                            <textarea type="text" className='' onChange={(e) => setNewTask(e)} placeholder="Add new to-do title..." rows="2"/>
                             <div className={styles.todo_addNewTask__options}>
                                 <p onClick={() => cancelNewTask()}>Cancel</p>
                                 <button type='submit'>Create</button>
@@ -94,40 +119,14 @@ const Todo = () => {
                         {isLessThan0 && !isMoreThan100 && ( 
                             <p className={styles.warning}>Title must be longer than 0 character.</p>)
                         }
-                    </>)
-                    }
+                    </>)}
                 </div>
                 
-                {/* code for modal */}
                 {isOpen && (
-                    <>
-                    {tasks.length ? 
-                        <div className={styles.modal}>
-                            <div className={styles.modal__content}>
-                                <p>Confirm to clear all todos?</p>
-                                <div className={styles.modal__content__confirmation}>
-                                    <button className={styles.cancel} onClick={() => setIsOpen(false)}>Cancel</button>
-                                    <button className={styles.confirm} onClick={() => removeAllTasks()}>Confirm</button>
-                                </div>
-                            </div>
-                        </div>
-                        : 
-                        <div className={styles.modal}>
-                            <div className={styles.modal__empty}>
-                                <p>There is no todo item!</p>
-                                <button className={styles.cancel} onClick={() => setIsOpen(false)}>Close</button>
-                            </div>
-                        </div>
-                    }
-                    </>
+                    <Modal tasks={tasks} removeAllTasks={removeAllTasks} closeModal={closeModal} />
                 )}
 
-                {tasks.length ? 
-                    <List tasks={tasks} setTasks={setTasks}/>
-                    : <div className={styles.todo_bottom}>
-                        <p>Nothing to-do yet.</p>
-                    </div>
-                }
+                <List tasks={tasks} deleteTask={deleteTask} finishTask={finishTask}/>
             </div>
         </div>
     )
